@@ -2,7 +2,7 @@
 
 `layzee` lets you specify Vagrantfile configuration via command line, so you don't have to write Ruby to spin up a VM.
 
-## Using shipy
+## Using layzee
 
 ##### Installation
 
