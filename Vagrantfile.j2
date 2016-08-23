@@ -1,0 +1,19 @@
+Vagrant.configure(2) do |config|
+  config.vm.provider "{{ provider }}" do |{{ provider }}, override|
+    {{ provider }}.driver = "kvm"
+    {{ provider }}.memory = {{ memory }}
+    {{ provider }}.cpus = {{ cpu }}
+  end
+
+  config.vm.box = "{{ box }}"
+
+  {% if volumes %}
+  {% for mount in volumes %}
+  config.vm.synced_folder "{{ mount.split(":")[0] }}", "{{ mount.split(":")[1] }}", type: "{{ type }}"
+  {% endfor %}
+  {% endif %}
+
+  {% if shell %}
+  config.vm.provision "shell", path: "{{ shell }}"
+  {% endif %}
+end
